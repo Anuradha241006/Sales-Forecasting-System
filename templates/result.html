@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Forecast Results</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}">
+
+
+</head>
+
+<body>
+
+<div class="container">
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>📊 Sales Forecast Results</h1>
+
+    <p>
+        Product: {{ product_id }}
+        |
+        Store: {{ store_id }}
+        |
+        Forecast: {{ forecast_days }} Days
+    </p>
+
+</div>
+
+
+<!-- MAIN DASHBOARD -->
+
+<div class="dashboard-card">
+
+    <!-- FORECAST SUMMARY -->
+
+    <h2>Forecast Summary</h2>
+
+
+    <div class="summary">
+
+
+        <div class="summary-card">
+
+            <h3>Total Sales</h3>
+
+            <p>{{ total_sales }}</p>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <h3>Average Daily Sales</h3>
+
+            <p>{{ average_sales }}</p>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <h3>Maximum Sales</h3>
+
+            <p>{{ max_sales }}</p>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <h3>Minimum Sales</h3>
+
+            <p>{{ min_sales }}</p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- INTERACTIVE FORECAST GRAPH -->
+
+    <h2>Sales Forecast Visualization</h2>
+
+
+    <div class="graph-container">
+
+        {{ graph_html | safe }}
+
+    </div>
+
+
+    <!-- DAILY SALES FORECAST TABLE -->
+
+    <h2>Daily Sales Forecast</h2>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Date</th>
+
+                    <th>Predicted Units Sold</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for forecast in forecasts %}
+
+                <tr>
+
+                    <td>
+                        {{ forecast.Date }}
+                    </td>
+
+                    <td>
+                        {{ forecast.Predicted_Units_Sold }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- BACK BUTTON -->
+
+    <br>
+
+
+    <a href="/" class="back-button">
+
+        ← Generate Another Forecast
+
+    </a>
+
+
+</div>
+
+
+</div>
+
+</body>
+
+</html>

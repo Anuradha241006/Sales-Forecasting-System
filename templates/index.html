@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Sales Forecasting System</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}">
+
+
+</head>
+
+<body>
+
+<div class="container">
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>📊 Sales Forecasting System</h1>
+
+    <p>Machine Learning Based Sales Prediction and Forecasting</p>
+
+</div>
+
+
+<!-- MODEL PERFORMANCE DASHBOARD -->
+
+{% if model_metrics %}
+
+<div class="dashboard-card">
+
+    <h2>🏆 Best Model Performance</h2>
+
+
+    <div class="summary">
+
+
+        <div class="summary-card">
+
+            <h3>Best Model</h3>
+
+            <p>{{ model_metrics.model }}</p>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <h3>MAE</h3>
+
+            <p>{{ model_metrics.mae }}</p>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <h3>RMSE</h3>
+
+            <p>{{ model_metrics.rmse }}</p>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <h3>R² Score</h3>
+
+            <p>{{ model_metrics.r2_score }}</p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+{% endif %}
+
+
+<!-- FORECAST FORM -->
+
+<div class="dashboard-card">
+
+    <h2>Generate Sales Forecast</h2>
+
+
+    <form action="/forecast" method="POST">
+
+
+        <!-- PRODUCT -->
+
+        <div class="form-group">
+
+            <label>Select Product</label>
+
+            <select name="product_id" required>
+
+                <option value="">
+                    -- Select Product --
+                </option>
+
+                <option value="P001">P001</option>
+                <option value="P002">P002</option>
+                <option value="P003">P003</option>
+                <option value="P004">P004</option>
+                <option value="P005">P005</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- STORE -->
+
+        <div class="form-group">
+
+            <label>Select Store</label>
+
+            <select name="store_id" required>
+
+                <option value="">
+                    -- Select Store --
+                </option>
+
+                <option value="S001">S001</option>
+                <option value="S002">S002</option>
+                <option value="S003">S003</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- FORECAST DURATION -->
+
+        <div class="form-group">
+
+            <label>Forecast Duration</label>
+
+            <select name="forecast_days" required>
+
+                <option value="">
+                    -- Select Duration --
+                </option>
+
+                <option value="7">7 Days</option>
+                <option value="14">14 Days</option>
+                <option value="30">30 Days</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- PROMOTION -->
+
+        <div class="form-group">
+
+            <label>Promotion Available?</label>
+
+            <select name="promotion" required>
+
+                <option value="">
+                    -- Select Option --
+                </option>
+
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+
+            </select>
+
+        </div>
+
+
+        <!-- SUBMIT BUTTON -->
+
+        <button type="submit">
+
+            Generate Forecast
+
+        </button>
+
+
+    </form>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    <p>
+
+        Sales Forecasting System |
+        Machine Learning Project
+
+    </p>
+
+</div>
+
+
+</div>
+
+</body>
+
+</html>
